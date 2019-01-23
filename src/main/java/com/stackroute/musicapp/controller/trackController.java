@@ -1,6 +1,8 @@
 package com.stackroute.musicapp.controller;
 
 import com.stackroute.musicapp.domain.Track;
+import com.stackroute.musicapp.exceptions.TrackDoesNotExistException;
+import com.stackroute.musicapp.exceptions.UserAlreadyExistsException;
 import com.stackroute.musicapp.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,15 +21,16 @@ public class trackController {
 
 
     @PostMapping("track")
-    public ResponseEntity<?> saveTrack(@RequestBody Track track){
-        ResponseEntity responseEntity;
-        try{
-            trackService.saveTrack(track);
-            responseEntity=new ResponseEntity<String>("Successfully created", HttpStatus.CREATED);
-        }catch(Exception e){
-            responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
-        }
-        return responseEntity;
+    public ResponseEntity<?> saveTrack(@RequestBody Track track) throws UserAlreadyExistsException {
+        return new ResponseEntity<Track>(trackService.saveTrack(track), HttpStatus.OK);
+//        ResponseEntity responseEntity;
+//        try{
+//            trackService.saveTrack(track);
+//            responseEntity=new ResponseEntity<String>("Successfully created", HttpStatus.CREATED);
+//        }catch(Exception e){
+//            responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+//        }
+//        return responseEntity;
     }
 
 
@@ -38,8 +41,14 @@ public class trackController {
 
 
     @GetMapping("track/{id}")
-    public ResponseEntity getTrack(@PathVariable int id){
+    public ResponseEntity getTrack(@PathVariable int id) throws TrackDoesNotExistException {
         return new ResponseEntity<Track>(trackService.getTrack(id),HttpStatus.OK);
+    }
+
+
+    @GetMapping("tracks/{string}")
+    public ResponseEntity getTrackByName(@PathVariable String string){
+        return new ResponseEntity<List<Track>>(trackService.getTrackByName(string),HttpStatus.OK);
     }
 
 
