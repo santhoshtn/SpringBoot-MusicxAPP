@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
+//
 @SpringBootApplication
 public class MusicAppApplication implements ApplicationListener<ContextRefreshedEvent>,CommandLineRunner {
 	@Autowired
