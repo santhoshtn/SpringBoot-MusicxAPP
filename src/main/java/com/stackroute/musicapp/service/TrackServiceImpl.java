@@ -12,7 +12,8 @@ import java.util.Optional;
 //specifies this class as service class
 @Service
 public class TrackServiceImpl implements TrackService{
-    TrackRepository trackRepository;
+
+    private TrackRepository trackRepository;
 
     @Autowired
     public TrackServiceImpl(TrackRepository trackRepository){
@@ -26,7 +27,7 @@ public class TrackServiceImpl implements TrackService{
             throw new UserAlreadyExistsException("Track "+track.getTrackId()+" already exists");
         }
         Track savedTrack= trackRepository.save(track);
-    return savedTrack;
+        return savedTrack;
     }
 
     //implementation of get all tracks
@@ -38,8 +39,8 @@ public class TrackServiceImpl implements TrackService{
     //implementation of remove a track from list
     @Override
     public boolean removeTrack(int id){
-    trackRepository.deleteById(id);
-    return true;
+        trackRepository.deleteById(id);
+        return true;
     }
 
     //implementation of update track comment
@@ -58,11 +59,11 @@ public class TrackServiceImpl implements TrackService{
     @Override
     public Optional<Track> getTrack(int trackId)throws TrackDoesNotExistException {
 
-       Optional<Track> track= trackRepository.findById(trackId);
+        Optional<Track> track= trackRepository.findById(trackId);
         if(!trackRepository.existsById(trackId)){
             throw new TrackDoesNotExistException("Track "+trackId+" does not exsit!");
         }
-    //    Optional<Track> track= trackRepository.findById(trackId);
+        //    Optional<Track> track= trackRepository.findById(trackId);
         return track;
     }
 

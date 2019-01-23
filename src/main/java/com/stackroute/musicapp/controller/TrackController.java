@@ -14,11 +14,12 @@ import java.util.Optional;
 
 @RestController//specifies this class is a controller
 @RequestMapping(value="api/v1")//provides root mapping path
-public class trackController {
+public class TrackController {
     //trackService instance
-    TrackService trackService;
+
+    private TrackService trackService;
     @Autowired
-    public trackController(TrackService trackService){
+    public TrackController(TrackService trackService){
         this.trackService=trackService;
     }
 
