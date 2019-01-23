@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value="api/v1")
@@ -42,7 +43,7 @@ public class trackController {
 
     @GetMapping("track/{id}")
     public ResponseEntity getTrack(@PathVariable int id) throws TrackDoesNotExistException {
-        return new ResponseEntity<Track>(trackService.getTrack(id),HttpStatus.OK);
+        return new ResponseEntity<Optional<Track>>(trackService.getTrack(id),HttpStatus.OK);
     }
 
 

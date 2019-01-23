@@ -42,13 +42,14 @@ public class TrackServiceImpl implements TrackService{
         return updateTrack;
     }
     @Override
-    public Track getTrack(int trackId)throws TrackDoesNotExistException {
+    public Optional<Track> getTrack(int trackId)throws TrackDoesNotExistException {
 
-        Optional<Track> track= trackRepository.findById(trackId);
-        if(trackRepository.findById(trackId) == null){
+       Optional<Track> track= trackRepository.findById(trackId);
+        if(!trackRepository.existsById(trackId)){
             throw new TrackDoesNotExistException("Track "+trackId+" does not exsit!");
         }
-        return track.get();
+    //    Optional<Track> track= trackRepository.findById(trackId);
+        return track;
     }
 
     @Override
