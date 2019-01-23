@@ -13,6 +13,6 @@ public interface TrackService {
     public Optional<Track> getTrack(int trackId)throws TrackDoesNotExistException;
     public boolean removeTrack(int trackId);
     public Track updateTrackComment(int trackId,String trackComment) throws TrackDoesNotExistException;
-    public List<Track> getTrackByName(String trackName);
+ //   public List<Track> getTrackByName(String trackName);
 
 }

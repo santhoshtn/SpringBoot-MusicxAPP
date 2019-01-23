@@ -41,11 +41,11 @@ public class TrackController {
         return new ResponseEntity<Optional<Track>>(trackService.getTrack(id),HttpStatus.OK);
     }
 
-    //maps with get request with endpoint /api/v1/tracks/{string}
-    @GetMapping("tracks/{string}")
-    public ResponseEntity getTrackByName(@PathVariable String string){
-        return new ResponseEntity<List<Track>>(trackService.getTrackByName(string),HttpStatus.OK);
-    }
+//    //maps with get request with endpoint /api/v1/tracks/{string}
+//    @GetMapping("tracks/{string}")
+//    public ResponseEntity getTrackByName(@PathVariable String string){
+//        return new ResponseEntity<List<Track>>(trackService.getTrackByName(string),HttpStatus.OK);
+//    }
 
     //maps with delete request with endpoint /api/v1/track/{id}
     @DeleteMapping("track/{id}")
